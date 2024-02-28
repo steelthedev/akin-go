@@ -19,6 +19,8 @@ func (h handler) AddProject(ctx *gin.Context) {
 		return
 	}
 
+	project.ProjectTitle = requestBody.ProjectTitle
+
 	if result := h.DB.Create(&project); result.Error != nil {
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
 			"message": "An error occured",
